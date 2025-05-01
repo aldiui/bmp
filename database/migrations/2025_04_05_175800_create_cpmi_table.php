@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('cpmi', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('lokasi_id')->nullable();
+            $table->uuid('kelas_id')->nullable();
+            $table->string('nama');
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('telepon')->nullable();
+            $table->string('password');
+            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Sudah Terbang'])->nullable();
+            $table->uuid('created_by')->nullable();
+            $table->uuid('updated_by')->nullable();
+            $table->uuid('deleted_by')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('cpmi');
+    }
+};
