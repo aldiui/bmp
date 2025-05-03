@@ -44,19 +44,19 @@ class LowonganKerjaResource extends Resource
                             ->searchable()
                             ->preload()
                             ->required(),
-                        Forms\Components\TextInput::make('nama')
-                            ->required()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(255)
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(function ($state, Forms\Set $set) {
-                                $set('slug', str($state)->slug());
-                            }),
-                        Forms\Components\TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->readonly()
-                            ->dehydrated(),
+                            Forms\Components\TextInput::make('nama')
+                                ->required()
+                                ->unique(ignoreRecord: true)
+                                ->maxLength(255)
+                                ->live(onBlur: true)
+                                ->afterStateUpdated(function ($state, Forms\Set $set) {
+                                    $set('slug', str($state)->slug());
+                                }),
+                            Forms\Components\TextInput::make('slug')
+                                ->required()
+                                ->maxLength(255)
+                                ->readonly()
+                                ->dehydrated(),
                         Forms\Components\RichEditor::make('persyaratan')
                             ->required()
                             ->columnSpanFull(),
@@ -124,8 +124,8 @@ class LowonganKerjaResource extends Resource
                             ->maxValue(65)
                             ->step(1)
                             ->suffix('Tahun'),
-                    ])
-                    ->columns(2),
+                        ])
+                        ->columns(2),
             ]);
     }
 

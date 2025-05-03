@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('slug');
             $table->text('persyaratan'); 
-            $table->decimal('gaji_awal', 15, 2)->nullable();
-            $table->decimal('gaji_akhir', 15, 2)->nullable();
+            $table->double('gaji_awal')->nullable();
+            $table->double('gaji_akhir')->nullable();
             $table->boolean('tampilkan_gaji')->default(false);
             $table->enum('status', ['Draft', 'Publish', 'Arsip']);
             $table->enum('status_loker', ['Urgent', 'Normal', 'Full']);
