@@ -9,6 +9,4 @@ use Filament\Resources\Pages\EditRecord;
 class EditJabatan extends EditRecord
 {
     protected static string $resource = JabatanResource::class;
-
-   
 }

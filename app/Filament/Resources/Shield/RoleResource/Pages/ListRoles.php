@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Shield\RoleResource\Pages;
 
 use App\Filament\Resources\Shield\RoleResource;
@@ -13,7 +12,9 @@ class ListRoles extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah')
+                ->icon('heroicon-o-plus'),
         ];
     }
 }

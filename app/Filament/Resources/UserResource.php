@@ -67,7 +67,7 @@ class UserResource extends Resource
                             ->label('Karyawan')
                             ->boolean()
                             ->required()
-                            ->live()
+                            ->live(onBlur: true)
                             ->inline()
                             ->inlineLabel(false),
                         Forms\Components\TextInput::make('nomor_identitas')

@@ -3,11 +3,12 @@ namespace Database\Seeders;
 
 use App\Models\Jabatan;
 use App\Models\JadwalPelajaran;
+use App\Models\Kategori;
 use App\Models\Kelas;
 use App\Models\Lokasi;
+use App\Models\Negara;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Ramsey\Uuid\Uuid;
 
 class DatabaseSeeder extends Seeder
 {
@@ -207,7 +208,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($locations as $location) {
             $location = Lokasi::create($location);
-            $kelas = Kelas::create([
+            $kelas    = Kelas::create([
                 'lokasi_id' => $location->id,
                 'nama'      => $location->nama,
             ]);
@@ -219,7 +220,7 @@ class DatabaseSeeder extends Seeder
                 'Kamis',
                 'Jumat',
             ];
-    
+
             foreach ($hariKerja as $hari) {
                 JadwalPelajaran::create([
                     'kelas_id' => $kelas->id,
@@ -227,7 +228,7 @@ class DatabaseSeeder extends Seeder
                     'libur'    => false,
                 ]);
             }
-    
+
             $hariLibur = ['Sabtu', 'Minggu'];
             foreach ($hariLibur as $hari) {
                 JadwalPelajaran::create([
@@ -238,25 +239,24 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // Urutan sesuai angka
-        $direkturUtama = Jabatan::where('nama', 'DIREKTUR UTAMA')->first(); // 1
-        $generalManager = Jabatan::where('nama', 'GENERAL MANAGER')->first(); // 2
-        $kaDivTaiwan = Jabatan::where('nama', 'KA.DIV.TAIWAN')->first(); // 3
-        $kaDivFinance = Jabatan::where('nama', 'KA.DIV. FINANCE')->first(); // 4
-        $kaDivDokumen = Jabatan::where('nama', 'KA.DIV. DOKUMEN')->first(); // 5
-        $staffDokumen = Jabatan::where('nama', 'STAFF. DOKUMEN')->first(); // 6
-        $staffLegaPap = Jabatan::where('nama', 'STAFF. LEGES & PAP')->first(); // 7
-        $staffVisa = Jabatan::where('nama', 'STAFF VISA')->first(); // 8
-        $cso = Jabatan::where('nama', 'CUSTOMER SERVICE OFFICER - CSO')->first(); // 9
-        $driver = Jabatan::where('nama', 'STAFF. OPERASIONAL - DRIVER')->first(); // 10
-        $staffAdminCabLampung = Jabatan::where('nama', 'STAFF. ADMIN - CAB. LAMPUNG')->first(); // 11
-        $stockKeeper = Jabatan::where('nama', 'STOCK KEEPER')->first(); // 12
-        $staffDokumenDominica = Jabatan::where('nama', 'STAFF. DOKUMEN - DOMINICA')->first(); // 13
-        $staffPengajar = Jabatan::where('nama', 'STAFF. PENGAJAR')->first(); // 14
-        $staffDigitalMarketing = Jabatan::where('nama', 'STAFF.DIGITAL MARKETING')->first(); // 15
-        $marketingSupport = Jabatan::where('nama', 'MARKETING SUPPORT')->first(); // 16
-        $staffArFinance = Jabatan::where('nama', 'STAFF. AR - FINANCE')->first(); // 17
-            
+        $direkturUtama         = Jabatan::where('nama', 'DIREKTUR UTAMA')->first();                 // 1
+        $generalManager        = Jabatan::where('nama', 'GENERAL MANAGER')->first();                // 2
+        $kaDivTaiwan           = Jabatan::where('nama', 'KA.DIV.TAIWAN')->first();                  // 3
+        $kaDivFinance          = Jabatan::where('nama', 'KA.DIV. FINANCE')->first();                // 4
+        $kaDivDokumen          = Jabatan::where('nama', 'KA.DIV. DOKUMEN')->first();                // 5
+        $staffDokumen          = Jabatan::where('nama', 'STAFF. DOKUMEN')->first();                 // 6
+        $staffLegaPap          = Jabatan::where('nama', 'STAFF. LEGES & PAP')->first();             // 7
+        $staffVisa             = Jabatan::where('nama', 'STAFF VISA')->first();                     // 8
+        $cso                   = Jabatan::where('nama', 'CUSTOMER SERVICE OFFICER - CSO')->first(); // 9
+        $driver                = Jabatan::where('nama', 'STAFF. OPERASIONAL - DRIVER')->first();    // 10
+        $staffAdminCabLampung  = Jabatan::where('nama', 'STAFF. ADMIN - CAB. LAMPUNG')->first();    // 11
+        $stockKeeper           = Jabatan::where('nama', 'STOCK KEEPER')->first();                   // 12
+        $staffDokumenDominica  = Jabatan::where('nama', 'STAFF. DOKUMEN - DOMINICA')->first();      // 13
+        $staffPengajar         = Jabatan::where('nama', 'STAFF. PENGAJAR')->first();                // 14
+        $staffDigitalMarketing = Jabatan::where('nama', 'STAFF.DIGITAL MARKETING')->first();        // 15
+        $marketingSupport      = Jabatan::where('nama', 'MARKETING SUPPORT')->first();              // 16
+        $staffArFinance        = Jabatan::where('nama', 'STAFF. AR - FINANCE')->first();            // 17
+
         $employees = [
             [
                 'name'            => 'ARIEF SURYOPRANOTO', // Direktur Utama (1)
@@ -449,6 +449,35 @@ class DatabaseSeeder extends Seeder
 
         foreach ($employees as $employee) {
             User::create($employee);
+        }
+
+        Kategori::create([
+            'nama' => 'Formal',
+        ]);
+
+        Kategori::create([
+            'nama' => 'Informal',
+        ]);
+
+        $countries = [
+            [
+                'kode'             => 'TWN',
+                'nama'             => 'Taiwan',
+                'mata_uang'        => 'New Taiwan Dollar',
+                'kode_mata_uang'   => 'TWD',
+                'simbol_mata_uang' => 'NT$',
+            ],
+            [
+                'kode'             => 'DMA',
+                'nama'             => 'Dominika',
+                'mata_uang'        => 'East Caribbean Dollar',
+                'kode_mata_uang'   => 'XCD',
+                'simbol_mata_uang' => 'EC$',
+            ],
+        ];
+
+        foreach ($countries as $country) {
+            Negara::create($country);
         }
     }
 }

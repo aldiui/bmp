@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\CpmiResource\Pages;
+namespace App\Filament\Resources\NegaraResource\Pages;
 
-use App\Filament\Resources\CpmiResource;
+use App\Filament\Resources\NegaraResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListCpmis extends ListRecords
+class ListNegaras extends ListRecords
 {
-    protected static string $resource = CpmiResource::class;
+    protected static string $resource = NegaraResource::class;
 
     protected function getHeaderActions(): array
     {

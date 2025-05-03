@@ -38,7 +38,7 @@ class CpmiResource extends Resource
                             ->searchable()
                             ->preload()
                             ->required()
-                            ->live(),
+                            ->live(onBlur: true),
                         Forms\Components\Select::make('kelas_id')
                             ->label('Kelas')
                             ->options(function (callable $get) {

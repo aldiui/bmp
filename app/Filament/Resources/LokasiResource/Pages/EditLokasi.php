@@ -14,6 +14,4 @@ class EditLokasi extends EditRecord
     {
         return $this->getResource()::getUrl('edit', ['record' => $this->record->id]);
     }
-
-   
 }
