@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
-class SlipGajiController extends Controller
+class GajiController extends Controller
 {
-    public function show($uuid)
+    public function slipGaji($id)
     {
-        $gaji = Gaji::where('id', $uuid)->firstOrFail();
+        $gaji = Gaji::where('id', $id)->firstOrFail();
         $employee = User::findOrFail($gaji->user_id);
         
         $periode = Carbon::create($gaji->tahun, $gaji->bulan, 1)->translatedFormat('F Y');
@@ -25,7 +25,7 @@ class SlipGajiController extends Controller
             'penandatangan' => 'Dewi Komalasari'
         ];
 
-        $pdf = PDF::loadView('slip_gaji', $data);
+        $pdf = PDF::loadView('filament.slip_gaji', $data);
         
         return $pdf->stream('Slip_Gaji_'.$employee->name.'_'.$periode.'.pdf');
     }

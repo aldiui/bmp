@@ -13,9 +13,10 @@ class ListLokasis extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-              Actions\CreateAction::make()
-                ->label('Tambah')
-                ->icon('heroicon-o-plus'),
+            Actions\CreateAction::make()
+                ->label('Buat')
+                ->icon('heroicon-o-plus')
+                ->createAnother(false),
         ];
     }
 }

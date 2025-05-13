@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\Cpmi;
+use App\Models\User;
+
+
+
 return [
 
     /*
@@ -40,6 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'cpmi' => [
+            'driver' => 'session',
+            'provider' => 'cpmi',
+        ],
     ],
 
     /*
@@ -64,11 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'cpmi' => [
+            'driver' => 'eloquent',
+            'model' => Cpmi::class,
+        ],
     ],
 
     /*

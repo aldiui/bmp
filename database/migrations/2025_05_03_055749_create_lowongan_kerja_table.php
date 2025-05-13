@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('slug');
             $table->text('persyaratan'); 
+            $table->string('gambar')->nullable();
             $table->double('gaji_awal')->nullable();
             $table->double('gaji_akhir')->nullable();
             $table->boolean('tampilkan_gaji')->default(false);

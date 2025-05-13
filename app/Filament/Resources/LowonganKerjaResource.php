@@ -57,6 +57,14 @@ class LowonganKerjaResource extends Resource
                             ->maxLength(255)
                             ->readonly()
                             ->dehydrated(),
+                        Forms\Components\FileUpload::make('gambar')
+                            ->label('Gambar')
+                            ->image()
+                            ->imageEditor()
+                            ->required()
+                            ->acceptedFileTypes(['image/png', 'image/jpg', 'image/jpeg'])
+                            ->maxSize(2048)
+                            ->directory('lowongan_kerja'),
                         Forms\Components\RichEditor::make('persyaratan')
                             ->required()
                             ->columnSpanFull(),
@@ -113,19 +121,19 @@ class LowonganKerjaResource extends Resource
                             ->required()
                             ->numeric()
                             ->minValue(17)
-                            ->maxValue(fn ($get) => $get('usia_maksimal') ?? 65)
+                            ->maxValue(fn($get) => $get('usia_maksimal') ?? 65)
                             ->step(1)
                             ->suffix('Tahun'),
                         Forms\Components\TextInput::make('usia_maksimal')
-                            ->label('Usia Maksimal') 
+                            ->label('Usia Maksimal')
                             ->required()
                             ->numeric()
-                            ->minValue(fn ($get) => $get('usia_minimal') ?? 17)
+                            ->minValue(fn($get) => $get('usia_minimal') ?? 17)
                             ->maxValue(65)
                             ->step(1)
                             ->suffix('Tahun'),
-                        ])
-                        ->columns(2),
+                    ])
+                    ->columns(2),
             ]);
     }
 

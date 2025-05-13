@@ -13,8 +13,9 @@ class ListRoles extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah')
-                ->icon('heroicon-o-plus'),
+                ->label('Buat')
+                ->icon('heroicon-o-plus')
+                ->createAnother(false),
         ];
     }
 }

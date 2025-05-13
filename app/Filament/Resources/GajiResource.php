@@ -324,7 +324,7 @@ class GajiResource extends Resource
                     ->label('Slip Gaji')
                     ->color('success')
                     ->icon('heroicon-s-arrow-down-tray')
-                    ->url(fn(Gaji $record) => route('slip-gaji.show', ['uuid' => $record->id]))
+                    ->url(fn(Gaji $record) => route('admin.gaji.slip-gaji', ['id' => $record->id]))
                     ->openUrlInNewTab(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

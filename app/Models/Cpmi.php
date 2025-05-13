@@ -6,11 +6,10 @@ use App\Models\Lokasi;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Ramsey\Uuid\Uuid;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Cpmi extends Model
+class Cpmi extends Authenticatable
 {
     use HasFactory, HasUuids, SoftDeletes;
 

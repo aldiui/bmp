@@ -3,38 +3,47 @@ namespace App\Filament\Widgets;
 
 use App\Models\Cpmi;
 use App\Models\Gaji;
-use App\Models\Jabatan;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Lokasi;
+use App\Models\Negara;
+use App\Models\Jabatan;
+use App\Models\Kategori;
+use App\Models\LowonganKerja;
 use App\Models\MataPelajaran;
-use App\Models\User;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
 use Spatie\Permission\Models\Role;
+use Filament\Widgets\StatsOverviewWidget\Stat;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class DashboardOverview extends BaseWidget
 {
-    protected static ?string $pollingInterval = '30s'; // Optional auto refresh
+    protected static ?string $pollingInterval = '30s'; 
 
     protected function getStats(): array
     {
         return [
-            Stat::make('Total User', User::count())
-                ->icon('heroicon-o-users'),
-            Stat::make('Total Role', Role::count())
+            Stat::make('Role', Role::count())
                 ->icon('heroicon-o-shield-check'),
-            Stat::make('Total Jabatan', Jabatan::count())
+            Stat::make('User', User::count())
+                ->icon('heroicon-o-users'),
+            Stat::make('Jabatan', Jabatan::count())
                 ->icon('heroicon-o-briefcase'),
-            Stat::make('Total Gaji (Data)', Gaji::count())
+            Stat::make('Gaji (Data)', Gaji::count())
                 ->icon('heroicon-o-banknotes'),
-            Stat::make('Total CPMI', Cpmi::count())
-                ->icon('heroicon-o-user-group'),
-            Stat::make('Total Lokasi', Lokasi::count())
+            Stat::make('Kategori', Kategori::count())
+                ->icon('heroicon-o-tag'),
+            Stat::make('Negara', Negara::count())
+                ->icon('heroicon-o-globe-europe-africa'),
+            Stat::make('Lowongan Kerja', LowonganKerja::count())
+                ->icon('heroicon-o-building-storefront'),
+            Stat::make('Lokasi', Lokasi::count())
                 ->icon('heroicon-o-map-pin'),
-            Stat::make('Total Mata Pelajaran', MataPelajaran::count())
+            Stat::make('Mata Pelajaran', MataPelajaran::count())
                 ->icon('heroicon-o-academic-cap'),
-            Stat::make('Total Kelas', Kelas::count())
+            Stat::make('Kelas', Kelas::count())
                 ->icon('heroicon-o-building-office-2'),
+            Stat::make('CPMI', Cpmi::count())
+                ->icon('heroicon-o-user-group'),
         ];
     }
 }
