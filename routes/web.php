@@ -1,18 +1,14 @@
 <?php
 
-use App\Http\Controllers\GajiController;
+use App\Http\Controllers\Admin\GajiController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Home\Index as HomeIndex;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
-
-// livewire
-Route::get('/login', Login::class)->name('login');
-Route::get('/', HomeIndex::class)->name('home');
-
-// filament
 Route::middleware('auth')->group(function () {
     Route::get('admin/gaji/{id}/slip-gaji', [GajiController::class, 'slipGaji'])->name('admin.gaji.slip-gaji')->middleware('permission:view_gaji');
 });
