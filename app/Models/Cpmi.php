@@ -1,12 +1,13 @@
 <?php
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Lokasi;
-use App\Models\User;
+use App\Models\Absensi;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Cpmi extends Authenticatable
@@ -36,6 +37,11 @@ class Cpmi extends Authenticatable
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
+
+    public function absensis()
+    {
+        return $this->hasMany(Absensi::class, 'cpmi_id');
     }
 
     public function createdBy()

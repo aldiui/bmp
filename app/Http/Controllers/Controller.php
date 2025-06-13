@@ -1,26 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Response;
 
 abstract class Controller
 {
-    public function successResponse($data = null, $message = 'Success', $code = Response::HTTP_OK)
+    public function successResponse($data, $message = 'success', $code = 200): JsonResponse
     {
         return response()->json([
-            'status' => $code,
+            'status'  => true,
             'message' => $message,
-            'data' => $data,
-        ], $code)->header('Content-Type', 'application/json');
+            'data'    => $data,
+        ], $code);
     }
 
-    public function errorResponse($data = null, $message = null, $code = Response::HTTP_BAD_REQUEST)
+    public function errorResponse($errors, $message = 'error', $code = 500): JsonResponse
     {
         return response()->json([
-            'status' => $code,
-            'message' => $message ?? 'Error',
-            'data' => $data,
-        ], $code)->header('Content-Type', 'application/json');
+            'status'  => false,
+            'message' => $message,
+            'data'    => $errors,
+        ], $code);
     }
 }
