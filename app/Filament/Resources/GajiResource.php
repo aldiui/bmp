@@ -42,6 +42,8 @@ class GajiResource extends Resource
                                     $user = User::find($state);
                                     if ($user && $user->jabatan) {
                                         $set('gaji_pokok', $user->jabatan->gaji_pokok);
+                                        $set('tunjangan', $user->jabatan->tunjangan);
+                                        $set('tunjangan_pajak', $user->jabatan->tunjangan_pajak);
                                     }
                                 }
                             }),

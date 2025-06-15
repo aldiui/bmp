@@ -22,9 +22,6 @@ return new class extends Migration
             $table->string('status_keluar')->nullable();
             $table->text('alasan_masuk')->nullable();
             $table->text('alasan_keluar')->nullable();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

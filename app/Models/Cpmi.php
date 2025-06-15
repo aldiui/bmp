@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Lokasi;
 use App\Models\Absensi;
+use App\Models\LamaranKerja;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,36 +45,8 @@ class Cpmi extends Authenticatable
         return $this->hasMany(Absensi::class, 'cpmi_id');
     }
 
-    public function createdBy()
+    public function lamaranKerja()
     {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy()
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy()
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->created_by = auth()->check() ? auth()->user()->id : null;
-            $model->updated_by = auth()->check() ? auth()->user()->id : null;
-        });
-
-        static::updating(function ($model) {
-            $model->updated_by = auth()->check() ? auth()->user()->id : null;
-        });
-
-        static::deleting(function ($model) {
-            $model->deleted_by = auth()->check() ? auth()->user()->id : null;
-        });
+        return $this->hasMany(LamaranKerja::class, 'cpmi_id');
     }
 }

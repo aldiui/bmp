@@ -12,9 +12,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('lokasi_id');
             $table->string('nama');
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

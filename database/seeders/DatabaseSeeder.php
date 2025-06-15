@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\Cpmi;
 use App\Models\Jabatan;
 use App\Models\JadwalPelajaran;
 use App\Models\Kategori;
@@ -9,6 +10,7 @@ use App\Models\Lokasi;
 use App\Models\Negara;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = \Faker\Factory::create('id_ID');
+
         User::create([
             'name'     => 'Admin',
             'email'    => 'admin@gmail.com',
@@ -24,23 +28,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $positions = [
-            ['nama' => 'DIREKTUR UTAMA', 'gaji_pokok' => 23800000.00],
-            ['nama' => 'GENERAL MANAGER', 'gaji_pokok' => 8500000.00],
-            ['nama' => 'KA.DIV.TAIWAN', 'gaji_pokok' => 9500000.00],
-            ['nama' => 'KA.DIV. FINANCE', 'gaji_pokok' => 7000000.00],
-            ['nama' => 'KA.DIV. DOKUMEN', 'gaji_pokok' => 4000000.00],
-            ['nama' => 'STAFF. DOKUMEN', 'gaji_pokok' => 5175000.00],
-            ['nama' => 'STAFF. LEGES & PAP', 'gaji_pokok' => 5500000.00],
-            ['nama' => 'STAFF VISA', 'gaji_pokok' => 5200000.00],
-            ['nama' => 'CUSTOMER SERVICE OFFICER - CSO', 'gaji_pokok' => 3500000.00],
-            ['nama' => 'STAFF. OPERASIONAL - DRIVER', 'gaji_pokok' => 6000000.00],
-            ['nama' => 'STAFF. ADMIN - CAB. LAMPUNG', 'gaji_pokok' => 3000000.00],
-            ['nama' => 'STOCK KEEPER', 'gaji_pokok' => 3000000.00],
-            ['nama' => 'STAFF. DOKUMEN - DOMINICA', 'gaji_pokok' => 3000000.00],
-            ['nama' => 'STAFF. PENGAJAR', 'gaji_pokok' => 4000000.00],
-            ['nama' => 'STAFF.DIGITAL MARKETING', 'gaji_pokok' => 4500000.00],
-            ['nama' => 'MARKETING SUPPORT', 'gaji_pokok' => 3500000.00],
-            ['nama' => 'STAFF. AR - FINANCE', 'gaji_pokok' => 4000000.00],
+            ['nama' => 'DIREKTUR UTAMA', 'gaji_pokok' => 23800000.00, 'tunjangan' => 7000000.00, 'tunjangan_pajak' => 2380000.00],
+            ['nama' => 'GENERAL MANAGER', 'gaji_pokok' => 8500000.00, 'tunjangan' => 2500000.00, 'tunjangan_pajak' => 850000.00],
+            ['nama' => 'KA.DIV.TAIWAN', 'gaji_pokok' => 9500000.00, 'tunjangan' => 2850000.00, 'tunjangan_pajak' => 950000.00],
+            ['nama' => 'KA.DIV. FINANCE', 'gaji_pokok' => 7000000.00, 'tunjangan' => 2100000.00, 'tunjangan_pajak' => 700000.00],
+            ['nama' => 'KA.DIV. DOKUMEN', 'gaji_pokok' => 4000000.00, 'tunjangan' => 1000000.00, 'tunjangan_pajak' => 400000.00],
+            ['nama' => 'STAFF. DOKUMEN', 'gaji_pokok' => 5175000.00, 'tunjangan' => 1300000.00, 'tunjangan_pajak' => 517500.00],
+            ['nama' => 'STAFF. LEGES & PAP', 'gaji_pokok' => 5500000.00, 'tunjangan' => 1400000.00, 'tunjangan_pajak' => 550000.00],
+            ['nama' => 'STAFF VISA', 'gaji_pokok' => 5200000.00, 'tunjangan' => 1250000.00, 'tunjangan_pajak' => 520000.00],
+            ['nama' => 'CUSTOMER SERVICE OFFICER - CSO', 'gaji_pokok' => 3500000.00, 'tunjangan' => 850000.00, 'tunjangan_pajak' => 350000.00],
+            ['nama' => 'STAFF. OPERASIONAL - DRIVER', 'gaji_pokok' => 6000000.00, 'tunjangan' => 1500000.00, 'tunjangan_pajak' => 600000.00],
+            ['nama' => 'STAFF. ADMIN - CAB. LAMPUNG', 'gaji_pokok' => 3000000.00, 'tunjangan' => 700000.00, 'tunjangan_pajak' => 300000.00],
+            ['nama' => 'STOCK KEEPER', 'gaji_pokok' => 3000000.00, 'tunjangan' => 600000.00, 'tunjangan_pajak' => 300000.00],
+            ['nama' => 'STAFF. DOKUMEN - DOMINICA', 'gaji_pokok' => 3000000.00, 'tunjangan' => 600000.00, 'tunjangan_pajak' => 300000.00],
+            ['nama' => 'STAFF. PENGAJAR', 'gaji_pokok' => 4000000.00, 'tunjangan' => 900000.00, 'tunjangan_pajak' => 400000.00],
+            ['nama' => 'STAFF.DIGITAL MARKETING', 'gaji_pokok' => 4500000.00, 'tunjangan' => 1000000.00, 'tunjangan_pajak' => 450000.00],
+            ['nama' => 'MARKETING SUPPORT', 'gaji_pokok' => 3500000.00, 'tunjangan' => 800000.00, 'tunjangan_pajak' => 350000.00],
+            ['nama' => 'STAFF. AR - FINANCE', 'gaji_pokok' => 4000000.00, 'tunjangan' => 900000.00, 'tunjangan_pajak' => 400000.00],
         ];
 
         foreach ($positions as $position) {
@@ -59,6 +63,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Jl. Gatot Subroto No. 123, Jakarta Selatan',
+                'telepon'            => '021-12345678',
             ],
             [
                 'kode'               => 'INDRAMAYU',
@@ -71,6 +76,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Jl. Gatot Subroto No. 123, Jakarta Selatan',
+                'telepon'            => '0234-567890',
             ],
             [
                 'kode'               => 'SUBANG',
@@ -83,6 +89,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Jl. Gatot Subroto No. 123, Jakarta Selatan',
+                'telepon'            => '0260-789012',
             ],
             [
                 'kode'               => 'CIREBON',
@@ -95,6 +102,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Cirebon, Jawa Barat',
+                'telepon'            => '0231-456789',
             ],
             [
                 'kode'               => 'LAMPUNG1',
@@ -107,6 +115,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Bandar Lampung, Lampung',
+                'telepon'            => '0721-888999',
             ],
             [
                 'kode'               => 'LAMPUNG2',
@@ -119,6 +128,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Bandar Lampung, Lampung',
+                'telepon'            => '0721-123456',
             ],
             [
                 'kode'               => 'LAMPUNG3',
@@ -131,6 +141,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Bandar Lampung, Lampung',
+                'telepon'            => '0721-987654',
             ],
             [
                 'kode'               => 'CILACAP',
@@ -143,6 +154,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Cilacap, Jawa Tengah',
+                'telepon'            => '0282-654321',
             ],
             [
                 'kode'               => 'GROBOGAN',
@@ -155,6 +167,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Grobogan, Jawa Tengah',
+                'telepon'            => '0292-345678',
             ],
             [
                 'kode'               => 'PONOROGO',
@@ -167,6 +180,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Ponorogo, Jawa Timur',
+                'telepon'            => '0352-777888',
             ],
             [
                 'kode'               => 'BANYUWANGI',
@@ -179,6 +193,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Banyuwangi, Jawa Timur',
+                'telepon'            => '0333-999000',
             ],
             [
                 'kode'               => 'BLITAR',
@@ -191,6 +206,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Blitar, Jawa Timur',
+                'telepon'            => '0342-111222',
             ],
             [
                 'kode'               => 'SRAGEN',
@@ -203,6 +219,7 @@ class DatabaseSeeder extends Seeder
                 'jam_keluar_selesai' => '17:30:00',
                 'radius'             => 100,
                 'alamat'             => 'Sragen, Jawa Tengah',
+                'telepon'            => '0271-333444',
             ],
         ];
 
@@ -235,6 +252,19 @@ class DatabaseSeeder extends Seeder
                     'kelas_id' => $kelas->id,
                     'hari'     => $hari,
                     'libur'    => true,
+                ]);
+            }
+
+            for ($i = 0; $i < 20; $i++) {
+                Cpmi::create([
+                    'lokasi_id' => $location->id,
+                    'kelas_id'  => $kelas->id,
+                    'nama'      => $faker->name,
+                    'email'     => $faker->unique()->safeEmail,
+                    'telepon'   => $faker->phoneNumber,
+                    'password'  => Hash::make('password'),
+                    'alamat'    => $faker->address,
+                    'status'    => $faker->randomElement(['Aktif', 'Tidak Aktif', 'Sudah Terbang']),
                 ]);
             }
         }

@@ -13,14 +13,11 @@ return new class extends Migration
             $table->uuid('lokasi_id')->nullable();
             $table->uuid('kelas_id')->nullable();
             $table->string('nama');
-            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('telepon')->nullable();
             $table->string('password');
+            $table->text('alamat')->nullable();
             $table->enum('status', ['Aktif', 'Tidak Aktif', 'Sudah Terbang'])->nullable();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,21 +5,21 @@ use Illuminate\Http\Response;
 
 abstract class Controller
 {
-    public function successResponse($data, $message = 'success', $code = 200): JsonResponse
+    public function successResponse($data = null, $message = 'Success', $code = Response::HTTP_OK)
     {
         return response()->json([
-            'status'  => true,
+            'status'  => $code,
             'message' => $message,
             'data'    => $data,
-        ], $code);
+        ], $code)->header('Content-Type', 'application/json');
     }
 
-    public function errorResponse($errors, $message = 'error', $code = 500): JsonResponse
+    public function errorResponse($data = null, $message = null, $code = Response::HTTP_BAD_REQUEST)
     {
         return response()->json([
-            'status'  => false,
-            'message' => $message,
-            'data'    => $errors,
-        ], $code);
+            'status'  => $code,
+            'message' => $message ?? 'Error',
+            'data'    => $data,
+        ], $code)->header('Content-Type', 'application/json');
     }
 }

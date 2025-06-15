@@ -21,39 +21,4 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render(function (Throwable $e, $request) {
-            $code    = 500;
-            $message = 'Internal Server Error';
-            $errors  = $e->getMessage();
-
-            if ($e instanceof AuthenticationException) {
-                $code    = 401;
-                $message = 'Unauthorized';
-            }
-
-            if ($e instanceof UnauthorizedException) {
-                $code    = 403;
-                $message = 'Forbidden';
-            }
-
-            if ($e instanceof ValidationException) {
-                $code    = 422;
-                $message = 'Validation Failed';
-                $errors  = $e->validator->errors()->toArray();
-            }
-
-            if ($e instanceof NotFoundHttpException) {
-                $code    = 404;
-                $message = 'Data Not Found';
-                $errors  = null;
-            }
-
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'status'  => false,
-                    'message' => $message,
-                    'data'    => $errors,
-                ], $code);
-            }
-        });
     })->create();

@@ -31,19 +31,20 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->darkMode(false)
+            ->font('Poppins')
             ->login()
             ->spa()
             ->profile()
             ->maxContentWidth('full')
             ->brandLogo(fn () => view('filament.logo'))
-            ->favicon('logo.png')
+            ->favicon('img/favicon.png')
             ->sidebarWidth('18rem')
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('5rem')
             ->colors([
                 'primary' => Color::Sky,
             ])
-            ->viteTheme('resources/css/app.css')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

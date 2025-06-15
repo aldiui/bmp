@@ -20,9 +20,7 @@ return new class extends Migration
             $table->time('jam_keluar_selesai');
             $table->integer('radius');
             $table->text('alamat')->nullable();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
+            $table->string('telepon')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -75,6 +75,10 @@ class LokasiResource extends Resource
                                         Forms\Components\Textarea::make('alamat')
                                             ->required()
                                             ->columnSpanFull(),
+                                        Forms\Components\TextInput::make('telepon')
+                                            ->tel()
+                                            ->required()
+                                            ->maxLength(255),
                                     ])
                                     ->columnSpan(1),
                                 Map::make('location')

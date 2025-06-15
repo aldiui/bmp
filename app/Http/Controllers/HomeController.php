@@ -20,9 +20,5 @@ class HomeController extends Controller
     {
         return view('home.contact');
     }
-
-    public function event()
-    {
-        return view('home.event');
-    }
 }
+

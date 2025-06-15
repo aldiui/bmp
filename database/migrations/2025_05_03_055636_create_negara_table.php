@@ -15,9 +15,6 @@ return new class extends Migration
             $table->string('mata_uang')->nullable();
             $table->string('kode_mata_uang', 3)->nullable();
             $table->string('simbol_mata_uang', 5)->nullable();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -43,6 +43,18 @@ class JabatanResource extends Resource
                     ->currencyMask(thousandSeparator: '.', decimalSeparator: ',', precision: 0)
                     ->prefix('Rp')
                     ->numeric(),
+                Forms\Components\TextInput::make('tunjangan')
+                    ->label('Tunjangan')
+                    ->required()
+                    ->currencyMask(thousandSeparator: '.', decimalSeparator: ',', precision: 0)
+                    ->prefix('Rp')
+                    ->numeric(),
+                Forms\Components\TextInput::make('tunjangan_pajak')
+                    ->label('Tunjangan Pajak')
+                    ->required()
+                    ->currencyMask(thousandSeparator: '.', decimalSeparator: ',', precision: 0)
+                    ->prefix('Rp')
+                    ->numeric(),
             ]);
     }
 
@@ -55,6 +67,18 @@ class JabatanResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('gaji_pokok')
                     ->label('Gaji Pokok')
+                    ->numeric()
+                    ->prefix('Rp ')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('tunjangan')
+                    ->label('Tunjangan')
+                    ->numeric()
+                    ->prefix('Rp ')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('tunjangan_pajak')
+                    ->label('Tunjangan Pajak')
                     ->numeric()
                     ->prefix('Rp ')
                     ->searchable()

@@ -1,5 +1,5 @@
 /* Fonts */
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Variables */
 @import 'variables';
@@ -7,3 +7,367 @@
 /* Bootstrap */
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Tailwind Sky Colors */
+:root {
+  --sky-50: #f0f9ff;
+  --sky-100: #e0f2fe;
+  --sky-200: #bae6fd;
+  --sky-300: #7dd3fc;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+  --sky-600: #0284c7;
+  --sky-700: #0369a1;
+  --sky-800: #075985;
+  --sky-900: #0c4a6e;
+  --sky-950: #082f49;
+}
+
+/* Sky Color Classes - Background */
+.bg-sky-50 { background-color: var(--sky-50) !important; }
+.bg-sky-100 { background-color: var(--sky-100) !important; }
+.bg-sky-200 { background-color: var(--sky-200) !important; }
+.bg-sky-300 { background-color: var(--sky-300) !important; }
+.bg-sky-400 { background-color: var(--sky-400) !important; }
+.bg-sky-500 { background-color: var(--sky-500) !important; }
+.bg-sky-600 { background-color: var(--sky-600) !important; }
+.bg-sky-700 { background-color: var(--sky-700) !important; }
+.bg-sky-800 { background-color: var(--sky-800) !important; }
+.bg-sky-900 { background-color: var(--sky-900) !important; }
+.bg-sky-950 { background-color: var(--sky-950) !important; }
+
+/* Sky Color Classes - Text */
+.text-sky-50 { color: var(--sky-50) !important; }
+.text-sky-100 { color: var(--sky-100) !important; }
+.text-sky-200 { color: var(--sky-200) !important; }
+.text-sky-300 { color: var(--sky-300) !important; }
+.text-sky-400 { color: var(--sky-400) !important; }
+.text-sky-500 { color: var(--sky-500) !important; }
+.text-sky-600 { color: var(--sky-600) !important; }
+.text-sky-700 { color: var(--sky-700) !important; }
+.text-sky-800 { color: var(--sky-800) !important; }
+.text-sky-900 { color: var(--sky-900) !important; }
+.text-sky-950 { color: var(--sky-950) !important; }
+
+/* Sky Color Classes - Border */
+.border-sky-50 { border-color: var(--sky-50) !important; }
+.border-sky-100 { border-color: var(--sky-100) !important; }
+.border-sky-200 { border-color: var(--sky-200) !important; }
+.border-sky-300 { border-color: var(--sky-300) !important; }
+.border-sky-400 { border-color: var(--sky-400) !important; }
+.border-sky-500 { border-color: var(--sky-500) !important; }
+.border-sky-600 { border-color: var(--sky-600) !important; }
+.border-sky-700 { border-color: var(--sky-700) !important; }
+.border-sky-800 { border-color: var(--sky-800) !important; }
+.border-sky-900 { border-color: var(--sky-900) !important; }
+.border-sky-950 { border-color: var(--sky-950) !important; }
+
+/* Sky Button Classes */
+.btn-sky-50 {
+  background-color: var(--sky-50);
+  border-color: var(--sky-50);
+  color: var(--sky-900);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-100);
+    border-color: var(--sky-100);
+    color: var(--sky-900);
+  }
+}
+
+.btn-sky-100 {
+  background-color: var(--sky-100);
+  border-color: var(--sky-100);
+  color: var(--sky-900);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-200);
+    border-color: var(--sky-200);
+    color: var(--sky-900);
+  }
+}
+
+.btn-sky-200 {
+  background-color: var(--sky-200);
+  border-color: var(--sky-200);
+  color: var(--sky-900);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-300);
+    border-color: var(--sky-300);
+    color: var(--sky-900);
+  }
+}
+
+.btn-sky-300 {
+  background-color: var(--sky-300);
+  border-color: var(--sky-300);
+  color: var(--sky-900);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-400);
+    border-color: var(--sky-400);
+    color: white;
+  }
+}
+
+.btn-sky-400 {
+  background-color: var(--sky-400);
+  border-color: var(--sky-400);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-500);
+    border-color: var(--sky-500);
+    color: white;
+  }
+}
+
+.btn-sky-500 {
+  background-color: var(--sky-500);
+  border-color: var(--sky-500);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-600);
+    border-color: var(--sky-600);
+    color: white;
+  }
+}
+
+.btn-sky-600 {
+  background-color: var(--sky-600);
+  border-color: var(--sky-600);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-700);
+    border-color: var(--sky-700);
+    color: white;
+  }
+}
+
+.btn-sky-700 {
+  background-color: var(--sky-700);
+  border-color: var(--sky-700);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-800);
+    border-color: var(--sky-800);
+    color: white;
+  }
+}
+
+.btn-sky-800 {
+  background-color: var(--sky-800);
+  border-color: var(--sky-800);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-900);
+    border-color: var(--sky-900);
+    color: white;
+  }
+}
+
+.btn-sky-900 {
+  background-color: var(--sky-900);
+  border-color: var(--sky-900);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-950);
+    border-color: var(--sky-950);
+    color: white;
+  }
+}
+
+.btn-sky-950 {
+  background-color: var(--sky-950);
+  border-color: var(--sky-950);
+  color: white;
+  
+  &:hover, &:focus {
+    background-color: var(--sky-900);
+    border-color: var(--sky-900);
+    color: white;
+  }
+}
+
+/* Sky Outline Button Classes */
+.btn-outline-sky-400 {
+  color: var(--sky-400);
+  border-color: var(--sky-400);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-400);
+    border-color: var(--sky-400);
+    color: white;
+  }
+}
+
+.btn-outline-sky-500 {
+  color: var(--sky-500);
+  border-color: var(--sky-500);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-500);
+    border-color: var(--sky-500);
+    color: white;
+  }
+}
+
+.btn-outline-sky-600 {
+  color: var(--sky-600);
+  border-color: var(--sky-600);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-600);
+    border-color: var(--sky-600);
+    color: white;
+  }
+}
+
+.btn-outline-sky-700 {
+  color: var(--sky-700);
+  border-color: var(--sky-700);
+  
+  &:hover, &:focus {
+    background-color: var(--sky-700);
+    border-color: var(--sky-700);
+    color: white;
+  }
+}
+
+/* Sky Gradient Classes */
+.bg-gradient-sky {
+  background: linear-gradient(135deg, var(--sky-400), var(--sky-600)) !important;
+}
+
+.bg-gradient-sky-light {
+  background: linear-gradient(135deg, var(--sky-100), var(--sky-300)) !important;
+}
+
+.bg-gradient-sky-dark {
+  background: linear-gradient(135deg, var(--sky-700), var(--sky-900)) !important;
+}
+
+/* Sky Shadow Classes */
+.shadow-sky {
+  box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.1), 0 2px 4px -1px rgba(14, 165, 233, 0.06) !important;
+}
+
+.shadow-sky-lg {
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -2px rgba(14, 165, 233, 0.05) !important;
+}
+
+/* Utility Classes */
+.text-shadow-sky {
+  text-shadow: 0 2px 4px rgba(14, 165, 233, 0.3);
+}
+
+.link-sky {
+  color: var(--sky-600);
+  text-decoration: none;
+  
+  &:hover {
+    color: var(--sky-700);
+    text-decoration: underline;
+  }
+}
+
+/* Alert Sky */
+.alert-sky {
+  background-color: var(--sky-50);
+  border-color: var(--sky-200);
+  color: var(--sky-800);
+}
+
+/* Badge Sky */
+.badge-sky {
+  background-color: var(--sky-500);
+  color: white;
+}
+
+/* Progress Bar Sky */
+.progress-bar-sky {
+  background-color: var(--sky-500);
+}
+
+/* Sky Custom Animations */
+@keyframes sky-pulse {
+  0%, 100% {
+    background-color: var(--sky-400);
+  }
+  50% {
+    background-color: var(--sky-600);
+  }
+}
+
+.animate-sky-pulse {
+  animation: sky-pulse 2s infinite;
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.toggler-icon {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #0c4a6e; // sky-900
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.mid-bar {
+    margin: 5px auto;
+}
+
+.navbar-toggler .mid-bar {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-filter: alpha(opacity=0);
+}
+
+.navbar-toggler .top-bar {
+    transform: rotate(45.5deg) translate(-1px, -1.5px);
+    transform-origin: 10% 9%;
+    -webkit-transform: rotate(45.5deg) translate(-1px, -1.5px);
+    -moz-transform: rotate(45.5deg) translate(-1px, -1.5px);
+    -ms-transform: rotate(45.5deg) translate(-1px, -1.5px);
+    -o-transform: rotate(45.5deg) translate(-1px, -1.5px);
+}
+
+.navbar-toggler .bottom-bar {
+    transform: rotate(-45.5deg) translate(-1px, -1.5px);
+    transform-origin: 10% 9%;
+    -webkit-transform: rotate(-45.5deg) translate(-1px, -1.5px);
+    -moz-transform: rotate(-45.5deg) translate(-1px, -1.5px);
+    -ms-transform: rotate(-45.5deg) translate(-1px, -1.5px);
+    -o-transform: rotate(-45.5deg) translate(-1px, -1.5px);
+}
+
+.navbar-toggler.collapsed .top-bar {
+    transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .mid-bar {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    transform: rotate(0);
+}

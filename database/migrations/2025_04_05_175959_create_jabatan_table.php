@@ -12,9 +12,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('nama');
             $table->double('gaji_pokok')->nullable();
-            $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
-            $table->uuid('deleted_by')->nullable();
+            $table->double('tunjangan')->nullable();
+            $table->double('tunjangan_pajak')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

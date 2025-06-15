@@ -58,9 +58,6 @@ class CpmiResource extends Resource
                         Forms\Components\TextInput::make('nama')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('username')
-                            ->required()
-                            ->maxLength(255),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
@@ -69,6 +66,9 @@ class CpmiResource extends Resource
                             ->tel()
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\Textarea::make('alamat')
+                            ->required()
+                            ->columnSpanFull(),
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->required(fn($record) => $record === null)
@@ -101,9 +101,6 @@ class CpmiResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('username')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('email')
