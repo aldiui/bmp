@@ -7,8 +7,10 @@ use App\Models\JadwalPelajaran;
 use App\Models\Kategori;
 use App\Models\Kelas;
 use App\Models\Lokasi;
+use App\Models\MataPelajaran;
 use App\Models\Negara;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = \Faker\Factory::create('id_ID');
+        $faker = Factory::create('id_ID');
 
         User::create([
             'name'     => 'Admin',
@@ -223,6 +225,40 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $mataPelajaran = [
+            [
+                'kode'      => 'MP-001',
+                'nama'      => 'Pelatihan Bahasa',
+                'deskripsi' => 'Memberikan keterampilan berbahasa yang dibutuhkan untuk berkomunikasi di negara tujuan.',
+            ],
+            [
+                'kode'      => 'MP-002',
+                'nama'      => 'Materi Sosial Budaya',
+                'deskripsi' => 'Membantu CPMI memahami dan beradaptasi dengan norma, nilai, dan kebiasaan masyarakat di negara tujuan.',
+            ],
+            [
+                'kode'      => 'MP-003',
+                'nama'      => 'Wawasan Kebangsaan',
+                'deskripsi' => 'Memperkuat pemahaman CPMI tentang identitas dan kebangsaan Indonesia.',
+            ],
+            [
+                'kode'      => 'MP-004',
+                'nama'      => 'Literasi Keuangan',
+                'deskripsi' => 'Memberikan pengetahuan tentang pengelolaan keuangan pribadi dan investasi, termasuk cara mengirimkan uang ke keluarga di Indonesia.',
+            ],
+            [
+                'kode'      => 'MP-005',
+                'nama'      => 'Keimigrasian',
+                'deskripsi' => 'Memberikan pemahaman tentang aturan keimigrasian di negara tujuan, hak dan kewajiban CPMI, serta prosedur yang harus diikuti.',
+            ],
+        ];
+
+        $mataPelajaranIds = [];
+        foreach ($mataPelajaran as $item) {
+            $mata               = MataPelajaran::create($item);
+            $mataPelajaranIds[] = $mata->id;
+        }
+
         foreach ($locations as $location) {
             $location = Lokasi::create($location);
             $kelas    = Kelas::create([
@@ -238,11 +274,12 @@ class DatabaseSeeder extends Seeder
                 'Jumat',
             ];
 
-            foreach ($hariKerja as $hari) {
+            foreach ($hariKerja as $index => $hari) {
                 JadwalPelajaran::create([
-                    'kelas_id' => $kelas->id,
-                    'hari'     => $hari,
-                    'libur'    => false,
+                    'kelas_id'          => $kelas->id,
+                    'hari'              => $hari,
+                    'libur'             => false,
+                    'mata_pelajaran_id' => $mataPelajaranIds[$index] ?? null,
                 ]);
             }
 
@@ -262,7 +299,7 @@ class DatabaseSeeder extends Seeder
                     'nama'      => $faker->name,
                     'email'     => $faker->unique()->safeEmail,
                     'telepon'   => $faker->phoneNumber,
-                    'password'  => Hash::make('password'),
+                    'password'  => Hash::make('11221122'),
                     'alamat'    => $faker->address,
                     'status'    => $faker->randomElement(['Aktif', 'Tidak Aktif', 'Sudah Terbang']),
                 ]);
@@ -286,6 +323,7 @@ class DatabaseSeeder extends Seeder
         $staffDigitalMarketing = Jabatan::where('nama', 'STAFF.DIGITAL MARKETING')->first();        // 15
         $marketingSupport      = Jabatan::where('nama', 'MARKETING SUPPORT')->first();              // 16
         $staffArFinance        = Jabatan::where('nama', 'STAFF. AR - FINANCE')->first();            // 17
+        $listKelas             = Kelas::all();
 
         $employees = [
             [
@@ -298,6 +336,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'ptkp_status'     => 'K/1',
                 'karyawan'        => true,
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'DADAN', // General Manager (2)
@@ -309,6 +348,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'ptkp_status'     => 'K/2',
                 'karyawan'        => true,
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'BETTY', // Ka.Div.Taiwan (3)
@@ -320,6 +360,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'DEWI KOMALASARI', // Ka.Div.Finance (4)
@@ -331,6 +372,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'K/3',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'AMANDA MARSELA PUTRI', // Ka.Div.Dokumen (5)
@@ -342,6 +384,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'HELENTINA MANUNGKALIT', // Staff Dokumen (6)
@@ -353,6 +396,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'BAGUS RANO ANWAR', // Staff Leges & PAP (7)
@@ -364,6 +408,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'K/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'GEDE WINARTANA', // Staff Visa (8)
@@ -375,6 +420,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'LIS TYANINGRUM', // CSO (9)
@@ -386,6 +432,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'IMAM SETIAWAN', // Driver (10)
@@ -397,6 +444,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'K/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'DEFA DEFINA WATI', // Staff Admin Cab.Lampung (11)
@@ -408,6 +456,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'MUNZILA PERTIWI', // Stock Keeper (12)
@@ -419,6 +468,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'FEBRIYANTI CLAUDIA HARAHAP', // Staff Dokumen Dominica (13)
@@ -430,6 +480,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'SITI RONDHIYAH', // Staff Pengajar (14)
@@ -441,6 +492,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'ENDANG MIRININGSIH', // Staff Digital Marketing (15)
@@ -452,6 +504,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'GINA TRIE ANAYA', // Marketing Support (16)
@@ -463,6 +516,7 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
             [
                 'name'            => 'AUDINA NURPADILLAH', // Staff AR Finance (17)
@@ -474,11 +528,40 @@ class DatabaseSeeder extends Seeder
                 'password'        => bcrypt('11221122'),
                 'karyawan'        => true,
                 'ptkp_status'     => 'TK/0',
+                'lokasi_id'       => Lokasi::where('kode', 'PUSAT')->first()->id,
             ],
         ];
 
         foreach ($employees as $employee) {
             User::create($employee);
+        }
+
+        foreach ($listKelas as $kelas) {
+            $pengajars = [];
+
+            for ($i = 0; $i < 5; $i++) {
+                $pengajars[] = User::create([
+                    'name'            => $faker->name,
+                    'jabatan_id'      => $staffPengajar->id, // jabatan staff pengajar
+                    'alamat'          => $faker->address,
+                    'nomor_identitas' => $faker->nik(),
+                    'email'           => $faker->unique()->safeEmail,
+                    'telepon'         => $faker->unique()->e164PhoneNumber,
+                    'password'        => bcrypt('11221122'),
+                    'ptkp_status'     => 'TK/0',
+                    'karyawan'        => true,
+                    'lokasi_id'       => $kelas->lokasi_id,
+                ]);
+            }
+
+            $jadwalPelajarans = JadwalPelajaran::where('kelas_id', $kelas->id)
+                ->whereIn('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'])
+                ->get();
+
+            foreach ($jadwalPelajarans as $index => $jadwal) {
+                $pengajar = $pengajars[$index % count($pengajars)];
+                $jadwal->update(['pengajar_id' => $pengajar->id]);
+            }
         }
 
         Kategori::create([

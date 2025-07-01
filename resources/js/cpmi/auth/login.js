@@ -8,7 +8,7 @@ $(document).ready(function () {
         const successCallback = function(response) {
             setButtonLoadingState("#login .btn.btn-sky-900", false,
                 "Login");
-            handleSuccess(response, null, null, null);
+            handleSuccess(response, null, null, "/cpmi");
         };
 
         const errorCallback = function(error) {

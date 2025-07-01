@@ -75,7 +75,7 @@ return [
         ],
         'cpmi' => [
             'driver' => 'eloquent',
-            'model' => Cpmi::class,
+            'model' => Cpmi::class, 
         ],
     ],
 

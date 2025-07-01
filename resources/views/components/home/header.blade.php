@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
             <div class="me-3">
-                <img src="{{ asset('img/logo.png') }}" width="120px" alt="Attendify.id - logo">
+                <img src="{{ asset('img/logo.png') }}" width="120px" alt="BMP - logo">
             </div>
         </a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
