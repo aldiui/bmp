@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top" id="topNavbarNew">
+<nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm" id="topNavbarNew">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
             <div class="me-3">

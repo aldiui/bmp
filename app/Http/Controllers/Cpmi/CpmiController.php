@@ -34,8 +34,8 @@ class CpmiController extends Controller
             return $this->successResponse(null, 'Data Cpmi berhasil diubah');
         }
 
-        $jsFile = 'resources/js/cpmi/cpmi/index.js';
-        return view('cpmi.cpmi.index', compact('jsFile'));
+        $jsFile = 'resources/js/cpmi/profile/index.js';
+        return view('cpmi.cpmi.index', compact('jsFile', 'cpmi'));
     }
 
     public function changePassword(Request $request)

@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Providers;
 
-use \Filament\Actions\CreateAction;
-use \Filament\Resources\Pages\CreateRecord;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use \Filament\Resources\Pages\CreateRecord;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         CreateRecord::disableCreateAnother();
+        Paginator::useBootstrap();
     }
 }

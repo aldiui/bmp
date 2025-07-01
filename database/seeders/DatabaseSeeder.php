@@ -1,16 +1,17 @@
 <?php
 namespace Database\Seeders;
 
+use Faker\Factory;
 use App\Models\Cpmi;
-use App\Models\Jabatan;
-use App\Models\JadwalPelajaran;
-use App\Models\Kategori;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Lokasi;
-use App\Models\MataPelajaran;
 use App\Models\Negara;
-use App\Models\User;
-use Faker\Factory;
+use App\Models\Jabatan;
+use App\Models\Kategori;
+use Illuminate\Support\Str;
+use App\Models\MataPelajaran;
+use App\Models\JadwalPelajaran;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -293,17 +294,22 @@ class DatabaseSeeder extends Seeder
             }
 
             for ($i = 0; $i < 20; $i++) {
+                $name     = $faker->name;
+                $username = strtolower(str_replace(' ', '.', $name));
+                $username = preg_replace('/[^a-z0-9.]/', '', $username); // hilangkan karakter aneh
+
                 Cpmi::create([
                     'lokasi_id' => $location->id,
                     'kelas_id'  => $kelas->id,
-                    'nama'      => $faker->name,
-                    'email'     => $faker->unique()->safeEmail,
-                    'telepon'   => $faker->phoneNumber,
+                    'nama'      => $name,
+                    'email'     => $username . $i . '@gmail.com', // bikin unik dan nyambung
+                    'telepon'   => $faker->unique()->e164PhoneNumber,
                     'password'  => Hash::make('11221122'),
                     'alamat'    => $faker->address,
                     'status'    => $faker->randomElement(['Aktif', 'Tidak Aktif', 'Sudah Terbang']),
                 ]);
             }
+
         }
 
         $direkturUtama         = Jabatan::where('nama', 'DIREKTUR UTAMA')->first();                 // 1
@@ -540,12 +546,16 @@ class DatabaseSeeder extends Seeder
             $pengajars = [];
 
             for ($i = 0; $i < 5; $i++) {
+                $name     = $faker->name;
+                $username = strtolower(str_replace(' ', '.', $name));
+                $username = preg_replace('/[^a-z0-9.]/', '', $username); // Bersihkan karakter aneh
+
                 $pengajars[] = User::create([
-                    'name'            => $faker->name,
-                    'jabatan_id'      => $staffPengajar->id, // jabatan staff pengajar
+                    'name'            => $name,
+                    'jabatan_id'      => $staffPengajar->id,
                     'alamat'          => $faker->address,
-                    'nomor_identitas' => $faker->nik(),
-                    'email'           => $faker->unique()->safeEmail,
+                    'nomor_identitas' => Str::random(16),                 // atau pakai $faker->uuid jika nik tidak tersedia
+                    'email'           => $username . $i . '@gmail.com', // Tambahkan index agar tetap unik
                     'telepon'         => $faker->unique()->e164PhoneNumber,
                     'password'        => bcrypt('11221122'),
                     'ptkp_status'     => 'TK/0',
@@ -554,16 +564,15 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
 
-            $jadwalPelajarans = JadwalPelajaran::where('kelas_id', $kelas->id)
+            $jadwalPelajaran = JadwalPelajaran::where('kelas_id', $kelas->id)
                 ->whereIn('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'])
                 ->get();
 
-            foreach ($jadwalPelajarans as $index => $jadwal) {
+            foreach ($jadwalPelajaran as $index => $jadwal) {
                 $pengajar = $pengajars[$index % count($pengajars)];
                 $jadwal->update(['pengajar_id' => $pengajar->id]);
             }
         }
-
         Kategori::create([
             'nama' => 'Formal',
         ]);

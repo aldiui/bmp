@@ -13,10 +13,10 @@
                     Percayakan proses penyaluran tenaga kerja Anda kepada tim berpengalaman yang memahami kebutuhan industri dan tenaga kerja secara menyeluruh.
                 </p>
                 <div class="text-center text-lg-start mt-3">
-                    <a href="{{ route('home.about') }}" class="btn btn-sky-900 rounded-pill px-4 py-2">
+                    <a href="{{ route('home.about') }}" class="btn btn-sky-900 rounded-pill mb-2 px-4 py-2">
                         Pelajari Selengkapnya <i class="bi bi-chevron-right ms-1"></i>
                     </a>
-                    <a href="{{ route('auth.registrasi') }}" class="btn btn-sky-500 rounded-pill px-4 py-2 ms-2">
+                    <a href="{{ route('auth.registrasi') }}" class="btn btn-sky-500 rounded-pill mb-2 px-4 py-2 ms-2">
                         <i class="bi bi-person-plus-fill me-2"></i>Registrasi Sekarang
                     </a>
                 </div>
@@ -103,10 +103,10 @@
                     <p class="text-muted mb-4">
                         Bersama tim ahli kami, perluas jaringan bisnis Anda ke dunia dengan pendekatan yang profesional dan berdampak jangka panjang.
                     </p>
-                    <a href="{{ route('home.contact') }}" class="btn btn-sky-900 rounded-pill px-4 py-2">
+                    <a href="{{ route('home.contact') }}" class="btn btn-sky-900 rounded-pill mb-2 px-4 py-2">
                         <i class="bi bi-people-fill me-2"></i>Hubungi Tim Kami Sekarang
                     </a>
-                    <a href="{{ route('auth.registrasi') }}" class="btn btn-sky-500 rounded-pill px-4 py-2 ms-2">
+                    <a href="{{ route('auth.registrasi') }}" class="btn btn-sky-500 rounded-pill mb-2 px-4 py-2 ms-2">
                         <i class="bi bi-person-plus-fill me-2"></i>Registrasi Sekarang
                     </a>
                 </div>

@@ -37,6 +37,9 @@ class MataPelajaranResource extends Resource
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Textarea::make('deskripsi')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 

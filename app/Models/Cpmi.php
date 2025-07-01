@@ -40,7 +40,7 @@ class Cpmi extends Authenticatable
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
-    public function absensis()
+    public function absensi()
     {
         return $this->hasMany(Absensi::class, 'cpmi_id');
     }

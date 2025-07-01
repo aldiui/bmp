@@ -141,14 +141,18 @@ class LowonganKerjaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('nama')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('kategori.nama')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('negara.nama')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nama')
-                    ->searchable()
+                Tables\Columns\TextColumn::make('lamaranKerja_count')
+                    ->label('Pelamar')
+                    ->counts('lamaranKerja')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()

@@ -42,7 +42,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         auth('cpmi')->logout();
-        return $this->successResponse(null, 'Logout berhasil');
+        return redirect()->route('login');
     }
 
     public function registrasi(Request $request)

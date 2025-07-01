@@ -59,7 +59,7 @@
                             </div>
                         </form>
                         <div class="text-center mt-3">
-                            <p class="mb-0">Sudah punya akun? <a href="{{ route('auth.login') }}" class="text-sky-900 ">Login</a></p>
+                            <p class="mb-0">Sudah punya akun? <a href="{{ route('login') }}" class="text-sky-900 ">Login</a></p>
                         </div>
                     </div>
                 </div>

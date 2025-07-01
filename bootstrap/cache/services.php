@@ -51,8 +51,9 @@
     47 => 'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider',
     48 => 'Saade\\FilamentFullCalendar\\FilamentFullCalendarServiceProvider',
     49 => 'Spatie\\Permission\\PermissionServiceProvider',
-    50 => 'App\\Providers\\AppServiceProvider',
-    51 => 'App\\Providers\\Filament\\AdminPanelProvider',
+    50 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    51 => 'App\\Providers\\AppServiceProvider',
+    52 => 'App\\Providers\\Filament\\AdminPanelProvider',
   ),
   'eager' => 
   array (
@@ -91,8 +92,9 @@
     32 => 'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider',
     33 => 'Saade\\FilamentFullCalendar\\FilamentFullCalendarServiceProvider',
     34 => 'Spatie\\Permission\\PermissionServiceProvider',
-    35 => 'App\\Providers\\AppServiceProvider',
-    36 => 'App\\Providers\\Filament\\AdminPanelProvider',
+    35 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    36 => 'App\\Providers\\AppServiceProvider',
+    37 => 'App\\Providers\\Filament\\AdminPanelProvider',
   ),
   'deferred' => 
   array (

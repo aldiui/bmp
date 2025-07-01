@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Cpmi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class KelasController extends Controller
+class BerandaController extends Controller
 {
     public function index()
     {
         $cpmi = auth('cpmi')->user();
-        return view('cpmi.kelas.index', compact('cpmi'));
+        return view('cpmi.beranda.index', compact('cpmi'));
     }
+
 }

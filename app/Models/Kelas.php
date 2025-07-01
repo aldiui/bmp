@@ -23,7 +23,7 @@ class Kelas extends Model
         return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 
-    public function jadwalPelajarans()
+    public function jadwalPelajaran()
     {
         return $this->hasMany(JadwalPelajaran::class, 'kelas_id');
     }

@@ -10,7 +10,7 @@ use Filament\Tables\Table;
 
 class JadwalPelajaranRelationManager extends RelationManager
 {
-    protected static string $relationship = 'jadwalPelajarans';
+    protected static string $relationship = 'jadwalPelajaran';
 
     protected static ?string $title = 'Jadwal Pelajaran';
 
