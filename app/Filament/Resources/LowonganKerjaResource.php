@@ -1,14 +1,15 @@
 <?php
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LowonganKerjaResource\Pages;
-use App\Models\LowonganKerja;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Enums\FiltersLayout;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\LowonganKerja;
+use Filament\Resources\Resource;
+use Filament\Tables\Enums\FiltersLayout;
+use App\Filament\Resources\LowonganKerjaResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class LowonganKerjaResource extends Resource
 {
@@ -150,10 +151,6 @@ class LowonganKerjaResource extends Resource
                 Tables\Columns\TextColumn::make('negara.nama')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lamaranKerja_count')
-                    ->label('Pelamar')
-                    ->counts('lamaranKerja')
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->icon(fn(string $state): string => match ($state) {
@@ -201,6 +198,7 @@ class LowonganKerjaResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
             ])
             ->paginated([25, 50, 100, 'all']);
     }

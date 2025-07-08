@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Gaji;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 
 class GajiController extends Controller
 {

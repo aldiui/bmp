@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Lokasi;
 use App\Models\Absensi;
 use App\Models\LamaranKerja;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Cpmi extends Authenticatable
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasUuids, SoftDeletes, Notifiable;
 
     protected $table = 'cpmi';
 

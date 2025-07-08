@@ -1,14 +1,15 @@
 <?php
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MataPelajaranResource\Pages;
-use App\Models\MataPelajaran;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Enums\FiltersLayout;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\MataPelajaran;
+use Filament\Resources\Resource;
+use Filament\Tables\Enums\FiltersLayout;
+use App\Filament\Resources\MataPelajaranResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class MataPelajaranResource extends Resource
 {
@@ -69,6 +70,7 @@ class MataPelajaranResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
             ])
             ->paginated([25, 50, 100, 'all']);
     }

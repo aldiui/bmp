@@ -9,6 +9,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Enums\FiltersLayout;
 use App\Filament\Resources\NegaraResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class NegaraResource extends Resource
 {
@@ -91,6 +92,7 @@ class NegaraResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
             ])
             ->paginated([25, 50, 100, 'all']);
     }

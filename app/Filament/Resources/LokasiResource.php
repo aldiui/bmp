@@ -1,15 +1,16 @@
 <?php
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LokasiResource\Pages;
-use App\Models\Lokasi;
-use Dotswan\MapPicker\Fields\Map;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Enums\FiltersLayout;
+use App\Models\Lokasi;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Dotswan\MapPicker\Fields\Map;
+use Filament\Tables\Enums\FiltersLayout;
+use App\Filament\Resources\LokasiResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class LokasiResource extends Resource
 {
@@ -159,6 +160,7 @@ class LokasiResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
             ])
             ->paginated([25, 50, 100, 'all']);
     }

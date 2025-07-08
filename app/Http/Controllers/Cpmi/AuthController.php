@@ -2,12 +2,15 @@
 namespace App\Http\Controllers\Cpmi;
 
 use App\Models\Cpmi;
+use App\Models\Kelas;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CpmiRegistrationNotification;
 
 class AuthController extends Controller
 {
@@ -20,11 +23,11 @@ class AuthController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return $this->errorResponse($validator->errors(), 'Data tidak valid.', 422);
+                return $this->errorResponse($validator->errors(), 'Data tidak valid.', 422);    
             }
 
             $cpmi = Cpmi::where('email', $request->email)
-                ->whereNot('status', 'Tidak Aktif')
+                ->whereNotIn('status', ['Pendaftaran', 'Tidak Aktif'])
                 ->first();
 
             if (! $cpmi || ! Hash::check($request->password, $cpmi->password)) {
@@ -64,15 +67,19 @@ class AuthController extends Controller
 
             DB::beginTransaction();
             try {
+                $kelas = Kelas::where('lokasi_id', $request->lokasi)->first();
                 $cpmi = Cpmi::create([
                     'nama'      => $request->nama,
                     'email'     => $request->email,
                     'telepon'   => $request->telepon,
                     'alamat'    => $request->alamat,
                     'lokasi_id' => $request->lokasi,
+                    'kelas_id'  => $kelas->id,
                     'password'  => $request->password,
-                    'status'    => 'Aktif',
+                    'status'    => 'Pendaftaran',
                 ]);
+
+                Notification::route('mail', $cpmi->email)->notify(new CpmiRegistrationNotification($cpmi));
                 DB::commit();
 
                 return $this->successResponse($cpmi, 'Registrasi berhasil');

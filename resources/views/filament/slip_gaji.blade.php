@@ -26,7 +26,7 @@
     <table width="100%" cellpadding="6" cellspacing="0" style="border-collapse: collapse; border: 1px solid black;">
         <tr style="border-bottom: 1px solid black;">
             <td width="20%" align="center">
-                <img src="logo.png" width="100px" alt="Logo Perusahaan" class="logo">
+                <img src="img/logo.png" width="100px" alt="Logo Perusahaan" class="logo">
             </td>
             <td width="60%" align="center" valign="top">
                 <h2>PT. BAHANA MEGA PRESTASI</h2>

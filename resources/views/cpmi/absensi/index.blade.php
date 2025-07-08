@@ -34,7 +34,7 @@
         </div>
         <div  div class="card shadow-sm bg-white">
             <div class="card-header fw-bold text-center">
-                Daftar Lamaran Kerja
+                Daftar Absensi
             </div>
             <div class="card-body">
                 <div class="table-responsive">

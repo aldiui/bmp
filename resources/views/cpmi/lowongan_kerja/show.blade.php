@@ -9,7 +9,8 @@
             <div class="card shadow-sm bg-white rounded-3">
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <div style="height: 100%; background-size: cover; background-position: center; background-image: url('{{ $lowonganKerja->gambar ? asset('storage/' . $lowonganKerja->gambar) : asset('img/default-job.jpg') }}');">
+                        <div style="height: 100%; background-size: cover; background-position: center; background-image: url('{{ asset('img/default-job.jpg') }}');">
+
                         </div>
                     </div>
                     <div class="col-md-7">

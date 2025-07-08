@@ -8,7 +8,7 @@ $(document).ready(function () {
         const successCallback = function(response) {
             setButtonLoadingState("#registrasi .btn.btn-sky-900", false,
                 "Registrasi");
-            handleSuccess(response, null, null, "/login");
+            handleSuccess(response, null, null, "/");
         };
 
         const errorCallback = function(error) {

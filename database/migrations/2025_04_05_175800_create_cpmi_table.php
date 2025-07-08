@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('telepon')->nullable();
             $table->string('password');
             $table->text('alamat')->nullable();
-            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Sudah Terbang'])->nullable();
+            $table->enum('status', ['Pendaftaran', 'Aktif', 'Tidak Aktif', 'Sudah Terbang'])->default('Pendaftaran');
             $table->timestamps();
             $table->softDeletes();
         });
