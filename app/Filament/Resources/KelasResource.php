@@ -69,6 +69,11 @@ class KelasResource extends Resource
                 Tables\Actions\RestoreAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
+            ->query(Kelas::query()
+                    ->when(auth()->user()->hasRole('admin_cabang'), function ($query) {
+                        $query->where('lokasi_id', auth()->user()->lokasi_id);
+                    })
+                    ->orderBy('id', 'desc'))
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

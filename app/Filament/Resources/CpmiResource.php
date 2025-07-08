@@ -1,14 +1,14 @@
 <?php
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\Cpmi;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Tables\Enums\FiltersLayout;
 use App\Filament\Resources\CpmiResource\Pages;
+use App\Models\Cpmi;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class CpmiResource extends Resource
@@ -154,13 +154,18 @@ class CpmiResource extends Resource
                 Tables\Actions\RestoreAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
+            ->query(Cpmi::query()
+                    ->when(auth()->user()->hasRole('admin_cabang'), function ($query) {
+                        $query->where('lokasi_id', auth()->user()->lokasi_id);
+                    })
+                    ->orderBy('id', 'desc'))
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
-                ExportBulkAction::make()
+                ExportBulkAction::make(),
             ])
             ->paginated([25, 50, 100, 'all']);
     }

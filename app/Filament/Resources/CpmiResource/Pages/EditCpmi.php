@@ -7,6 +7,8 @@ use App\Models\Cpmi;
 use App\Notifications\CpmiApprovalNotification;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Database\Eloquent\Model;
+
 
 class EditCpmi extends EditRecord
 {
@@ -17,13 +19,19 @@ class EditCpmi extends EditRecord
         return $this->getResource()::getUrl('index');
     }
 
-    protected function handleRecordUpdate(array $data): Cpmi
+
+
+    protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        $cpmi = $this->record;
-        $cpmi->update($data);
+        $oldStatus = $record->status;
 
-        Notification::route('mail', $cpmi->email)->notify(new CpmiApprovalNotification($cpmi));
+        $record->update($data);
 
-        return $cpmi;
+        // Only send notification if status changed
+        if ($oldStatus !== $record->status) {
+            Notification::route('mail', $record->email)->notify(new CpmiApprovalNotification($record));
+        }
+
+        return $record;
     }
 }

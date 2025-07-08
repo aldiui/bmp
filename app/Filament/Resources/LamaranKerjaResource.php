@@ -1,19 +1,16 @@
 <?php
-
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use App\Models\LamaranKerja;
-use Filament\Resources\Resource;
-use Filament\Tables\Enums\FiltersLayout;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\LamaranKerjaResource\Pages;
+use App\Models\LamaranKerja;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
-use App\Filament\Resources\LamaranKerjaResource\RelationManagers;
 
 class LamaranKerjaResource extends Resource
 {
@@ -29,7 +26,6 @@ class LamaranKerjaResource extends Resource
 
     protected static ?int $navigationSort = 6;
 
-
     public static function form(Form $form): Form
     {
         return $form
@@ -37,7 +33,7 @@ class LamaranKerjaResource extends Resource
                 Forms\Components\Select::make('status')
                     ->options([
                         'Pending'   => 'Pending',
-                        'Disetujui'   => 'Disetujui',
+                        'Disetujui' => 'Disetujui',
                         'Ditolak'   => 'Ditolak',
                     ]),
             ]);
@@ -87,7 +83,7 @@ class LamaranKerjaResource extends Resource
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
                         'Pending'   => 'Pending',
-                        'Disetujui'   => 'Disetujui',
+                        'Disetujui' => 'Disetujui',
                         'Ditolak'   => 'Ditolak',
                     ]),
                 Tables\Filters\TrashedFilter::make(),
@@ -98,13 +94,20 @@ class LamaranKerjaResource extends Resource
                 Tables\Actions\RestoreAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
+            ->query(LamaranKerja::query()
+                    ->when(auth()->user()->hasRole('admin_cabang'), function ($query) {
+                        $query->whereHas('cpmi', function ($subQuery) {
+                            $subQuery->where('lokasi_id', auth()->user()->lokasi_id);
+                        });
+                    })
+                    ->orderBy('id', 'desc'))
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                 ]),
-                ExportBulkAction::make()
+                ExportBulkAction::make(),
             ])
             ->paginated([25, 50, 100, 'all']);
     }

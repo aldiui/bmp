@@ -1,16 +1,16 @@
 <?php
 namespace App\Http\Controllers\Cpmi;
 
+use App\Http\Controllers\Controller;
 use App\Models\Cpmi;
 use App\Models\Kelas;
 use App\Models\Lokasi;
+use App\Notifications\CpmiRegistrationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\CpmiRegistrationNotification;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,7 @@ class AuthController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return $this->errorResponse($validator->errors(), 'Data tidak valid.', 422);    
+                return $this->errorResponse($validator->errors(), 'Data tidak valid.', 422);
             }
 
             $cpmi = Cpmi::where('email', $request->email)
@@ -60,7 +60,7 @@ class AuthController extends Controller
                 'password'            => 'required|string|min:8',
                 'konfirmasi_password' => 'required|string|min:8',
             ]);
-            
+
             if ($validator->fails()) {
                 return $this->errorResponse($validator->errors(), 'Data tidak valid.', 422);
             }
@@ -68,7 +68,7 @@ class AuthController extends Controller
             DB::beginTransaction();
             try {
                 $kelas = Kelas::where('lokasi_id', $request->lokasi)->first();
-                $cpmi = Cpmi::create([
+                $cpmi  = Cpmi::create([
                     'nama'      => $request->nama,
                     'email'     => $request->email,
                     'telepon'   => $request->telepon,

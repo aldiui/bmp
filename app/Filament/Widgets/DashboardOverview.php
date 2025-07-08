@@ -3,20 +3,23 @@ namespace App\Filament\Widgets;
 
 use App\Models\Cpmi;
 use App\Models\Gaji;
-use App\Models\Jabatan;
-use App\Models\Kategori;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Lokasi;
+use App\Models\Negara;
+use App\Models\Jabatan;
+use App\Models\Kategori;
 use App\Models\LowonganKerja;
 use App\Models\MataPelajaran;
-use App\Models\Negara;
-use App\Models\User;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
 use Spatie\Permission\Models\Role;
+use Filament\Widgets\StatsOverviewWidget\Stat;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class DashboardOverview extends BaseWidget
 {
+    use HasWidgetShield;
+
     protected static ?string $pollingInterval = '30s';
 
     protected function getStats(): array
